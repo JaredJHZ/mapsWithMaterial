@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span>Mapas</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-title></mat-card-title>
+  <mat-card-content>
+      <agm-map  (mapRightClick)="agregarMarcador($event)" [latitude]="marcadores[0].lat" [longitude]="marcadores[0].lng" [zoom]="17">
+          <agm-marker *ngFor="let marcador of marcadores; let i=index;" [latitude]="marcador.lat" [longitude]="marcador.lng">
+              <agm-info-window>
+                  <strong>{{marcador.titulo}}</strong>
+                  <p>{{marcador.descripcion}}</p>
+                  <button mat-raised-button color="primary" (click)="editar(marcador)">Editar</button>
+                  <button mat-raised-button color="warn" (click)="eliminarMarcador(i)">Eliminar</button>
+              </agm-info-window>
+          </agm-marker> 
+        </agm-map>
+      </mat-card-content>
+</mat-card>
